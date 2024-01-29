@@ -8,11 +8,10 @@ function Login() {
 
   const history = useHistory()
   const {
-    setToken
+    setToken, setNames,
+    token, decodedToken
   } = useCommerceStore()
-  const {
-    setNames
-  } = useCommerceStore()
+
 
 
   const [email, setEmail] = useState('')
@@ -38,9 +37,9 @@ function Login() {
         console.log(response);
         // const result = await response.json()
         setToken(response.data.token);
-        setNames(response.data.name);
-   
-        history.push('/')
+        // setNames(response.data.user.name);
+
+        history.push('/',)
 
       })
       .catch(function (error) {
@@ -59,6 +58,11 @@ function Login() {
           setError('An unexpected error occurred. Please try again.');
         }
       });
+
+
+
+
+
 
   }
   return (

@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-
+import { JwtPayload } from 'jsonwebtoken';
 interface User {
   email: string;
   name : string;
@@ -20,7 +20,7 @@ interface CommerceStore {
   cart: Record<string, number>;
   addOneToCart: (productId: string) => void;
   removeOneFromCart: (productId: string) => void;
-  name: string;
+  names: string;
   setNames: (name: string) => void;
 
   products: Product[];
@@ -33,15 +33,23 @@ interface CommerceStore {
   setMaxPrice: (maxPrice: number) => void;
   filteredProducts: any[];
   searchTerm: string; 
-  setSearchTerm: (searchTerm: string) => void; 
+  setSearchTerm: (searchTerm: string) => void;
+
+  decodedToken: JwtPayload | null;
+  setDecodedToken: (decodedToken: JwtPayload | null) => void; 
+
 }
 
 export const useCommerceStore = create<CommerceStore>((set) => ({
   token: null,
   setToken: (user) => set((state) => ({ token: user })),
-  name: '',
-  setNames: (name) => set((state) => ({ name: name })),
+  names: '',
+  setNames: (names) => set((state) => ({ names: names })),
 
+  decodedToken: null,
+  setDecodedToken: (decodedToken) => set({ decodedToken }),  
+  
+  
   products: [],
   setProducts: (products) => set({ products }),
   selectedCategory: 'All',

@@ -8,8 +8,13 @@ function CategoryFilter() {
   } = useCommerceStore()
 
   const categories = [
-    { name: 'Electronics', image: '/categories/clothes.png' },
-    { name: 'Clothing', image: 'clothing.jpg' },
+    { name: 'clothes', image: '/categories/clothes.png' },
+    { name: 'Furniture', image: '/categories/furniture.png' },
+    { name: 'arts', image: '/categories/arts.png' },
+    { name: 'vases', image: '/categories/vases.png' },
+    { name: 'paintings', image: '/categories/paintings.png' },
+    { name: 'All', image: '/categories/paintings.png', },
+
     // Add more categories with their respective images
   ];
 
@@ -44,16 +49,19 @@ function CategoryFilter() {
         }
         )}
       </div> */}
+    
+      <div className="categories flex gap-4 items-center ml-2 mr-2 ">
+        {categories.map((category) => (
 
-      {categories.map((category) => (
-        <img
-          key={category.name}
-          src={category.image}
-          alt={category.name}
-          onClick={() => setSelectedCategory(category.name)}
-          style={{ cursor: 'pointer', margin: '5px' }}
-        />
-      ))}
+          <img className="h-10"
+            key={category.name}
+            src={category.image}
+            alt={category.name}
+            onClick={() => setSelectedCategory(category.name)}
+            style={{ cursor: 'pointer', margin: '5px' }}
+          />
+        ))}
+      </div>
 
 
       {/* <option value="All">All Categories</option>
@@ -62,17 +70,7 @@ function CategoryFilter() {
       <option value="Furniture">Furniture</option>
       <option value="Beauty">Beauty</option> */}
       {/* Add more categories */}
-      {/* <select
-        value={selectedCategory}
-
-      >
-        <img className="h-10" src="/categories/clothes.png" alt="Electronics" />
-        <img className="h-10" src="/categories/furniture.png" alt="" />
-        <img className="h-10" src="/categories/arts.png" alt="" />
-        <img className="h-10" src="/categories/vases.png" alt="" />
-        <img className="h-10" src="/categories/paintings.png" alt="" />
-      </select> */}
-
+   
     </>
   )
 }

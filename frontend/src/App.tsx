@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect, Route, HashRouter as Router, Switch, useHistory, RouteProps } from 'react-router-dom';
 import './App.css';
 import Register from "./components/Forms/Register";
@@ -15,8 +15,9 @@ import AdminApprove from './components/Forms/AdminApprove';
 import StoresList from './components/StoresList';
 
 const App: React.FC = () => {
-  const { token } = useCommerceStore();
+  const { token, decodedToken, names } = useCommerceStore();
   const history = useHistory();
+  const [admin, setAdmin] = useState('');
 
   const logout = async () => {
     try {
@@ -36,7 +37,7 @@ const App: React.FC = () => {
 
       const responseData = await response.json();
       console.log(responseData);
-      alert('Logout successful');
+      alert(`user  ${decodedToken?.user.email} log out`);
 
       // Use history.push for programmatic redirection
       history.push('/login');
@@ -45,30 +46,50 @@ const App: React.FC = () => {
     }
   };
 
-  const PrivateRoute: React.FC<{ component: React.ComponentType<any> } & RouteProps> = ({ component: Component, ...rest }) => (
+  const PrivateRoute: React.FC<{ component: React.ComponentType<any> } & RouteProps> = ({ component: AdminApprove, ...rest }) => (
     <Route
       {...rest}
       render={(props) =>
-        token && superAdmins.includes(token.email) ? (
-          <Component {...props} />
+        token && superAdmins.includes(decodedToken?.user.email) ? (
+          <AdminApprove {...props} />
+          
         ) : (
           <Redirect to="/login" />
         )
       }
     />
   );
-  const AdminRoute: React.FC<{ component: React.ComponentType<any> } & RouteProps> = ({ component: Component, ...rest }) => (
-    <Route
-      {...rest}
-      render={(props) =>
-        token && token.email === "walid.daou@gamil.com" ? (
-          <Redirect to="/admin-dashboard" />
-        ) : (
-          <Redirect to="/login" />
-        )
-      }
-    />
-  );
+  // const AdminRoute: React.FC<{ component: React.ComponentType<any> } & RouteProps> = ({ component: Component, ...rest }) => (
+  //   <Route
+  //     {...rest}
+  //     render={(props) =>
+  //       token && token.email === "walid.daou@gamil.com" ? (
+  //         <Redirect to="/" />
+  //       ) : (
+  //         <Redirect to="/product" />
+  //       )
+  //     }
+  //   />
+  // );
+
+  const checkForChanges = () => {
+    // Your logic to check for changes or perform some action
+    console.log('Checking for changes...');
+    // For example, if myValue changes, do something
+    if (token) {
+      console.log(names);
+      setAdmin(decodedToken?.user.email);
+      // alert(decodedToken?.user.email)
+    }
+
+    setTimeout(checkForChanges, 10000); // Set the timeout duration in milliseconds (e.g., 1000 ms = 1 second)
+  };
+
+  useEffect(() => {
+
+    checkForChanges();
+
+  }, [token]);
 
   return (
     <div className="App">
@@ -78,12 +99,21 @@ const App: React.FC = () => {
       <Router>
         <Switch>
 
-          {/* <PrivateRoute path="/admin-dashboard" component={AdminApprove} /> */}
-          <AdminRoute path="/admin-dashboard" component={AdminApprove} />
+          {/* 
+          {token && superAdmins.includes(token.email) ? (
+            <Route path="/admin" component={AdminApprove} />
+          ) : null}
+           */}
 
+          {/* {admin && superAdmins.includes(admin) && (
+            <Route path="/admin" exact component={AdminApprove} />
+          )} */}
+
+
+{token ?<PrivateRoute path="/dashboard" component={AdminApprove}/>:null}
           <Route path='/Login' exact component={Login} />
           <Route path='/Register' exact component={Register} />
-          <Route path='/' exact component={ProductList} />
+          <Route path='/products' exact component={ProductList} />
           <Route path='/store' exact component={StoresList} />
           <Route path='/store' exact component={CreateStore} />
           <Route path='/MyProduct' exact component={AddProduct} />

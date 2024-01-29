@@ -13,12 +13,15 @@ function AddProduct() {
     const [productPrice, setProductPrice] = useState(10)
     const [productCategory, setProductCategory] = useState('')
     const [productDescription, setProductDescription] = useState('')
-    const ELECTRONICS = 'Electronics'
-    const BEAUTY = 'Beauty'
-    const FURNITURE = 'Furniture'
-    const FASHION = 'Fashion'
 
-    const SPORTS = 'Sports'
+    const clothes = 'clothes'
+    const arts = 'arts'
+    const Furniture = 'Furniture'
+
+    const paintings = 'paintings'
+    const vases = 'vases'
+
+
     const formStyle = {
         display: 'flex',
         flexDirection: 'column' as 'column',
@@ -61,19 +64,16 @@ function AddProduct() {
                 <span>
                     <label htmlFor="product-category">product-category</label>
 
-                    <label htmlFor="Electronics">Electronics</label>
-                    <input type="radio" name="productCategory" id="Electronics" value={ELECTRONICS} onChange={(e) => setProductCategory(e.target.value)} />
-
-                    <label htmlFor="Fashion">Fashion</label>
-                    <input type="radio" name="productCategory" id="Fashion" value={FASHION} onChange={(e) => setProductCategory(e.target.value)} />
-
+                    <label htmlFor="clothes">clothes</label>
+                    <input type="radio" name="productCategory" id="clothes" value={clothes} onChange={(e) => setProductCategory(e.target.value)} />
                     <label htmlFor="Furniture">Furniture</label>
-                    <input type="radio" name="productCategory" id="Furniture" value={FURNITURE} onChange={(e) => setProductCategory(e.target.value)} />
-                    <label htmlFor="Beauty ">Beauty </label>
-                    <input type="radio" name="productCategory" id="Beaut " value={BEAUTY} onChange={(e) => setProductCategory(e.target.value)} />
-                    <label htmlFor="Sports">Sports</label>
-                    <input type="radio" name="productCategory" id="Sports" value={SPORTS} onChange={(e) => setProductCategory(e.target.value)} />
-
+                    <input type="radio" name="productCategory" id="Furniture" value={Furniture} onChange={(e) => setProductCategory(e.target.value)} />
+                    <label htmlFor="arts ">arts </label>
+                    <input type="radio" name="productCategory" id="Beaut " value={arts} onChange={(e) => setProductCategory(e.target.value)} />
+                    <label htmlFor="vases">vases</label>
+                    <input type="radio" name="productCategory" id="vases" value={vases} onChange={(e) => setProductCategory(e.target.value)} />
+                    <label htmlFor="paintings">paintings</label>
+                    <input type="radio" name="productCategory" id="paintings" value={paintings} onChange={(e) => setProductCategory(e.target.value)} />
 
 
 

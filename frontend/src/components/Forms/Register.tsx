@@ -19,7 +19,9 @@ function Register() {
     const formStyle = {
         display: 'flex',
         flexDirection: 'column' as 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between' ,
+        gap:'20px' ,
+        
     }
 
     const handleSubmit = async (e: any) => {
@@ -58,9 +60,9 @@ function Register() {
             } else {
                 const data = await response.json()
                 setToken(data.token)
-                setNames(data.name)
-                console.log(name)
-                history.push('/Login')
+                setNames(data.toke.name)
+                alert(data.toke.name)
+                history.push('/')
 
             }
         } catch (error: any) {

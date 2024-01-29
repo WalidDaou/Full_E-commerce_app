@@ -8,36 +8,34 @@ interface HeaderProps {
   onLogout: () => Promise<void>;
 }
 
-const Header : React.FC<HeaderProps> =({onLogout})=>{
+const Header: React.FC<HeaderProps> = ({ onLogout }) => {
 
 
   const history = useHistory();
   const [userName, setUserName] = useState('user');
-  const { name } = useCommerceStore();
-  const { token } = useCommerceStore();
+  const { names, decodedToken } = useCommerceStore();
+
+
+
   // Use useEffect to update userName when name changes
-  useEffect(() => {
-    if (name) {
-      setUserName(name);
+
+
+
+  const handleLogout = async () => {
+    try {
+      await onLogout(); // Call the provided logout function
+      // Optionally, you can navigate to another page or perform other actions after logout
+    } catch (error: any) {
+      console.error('Error during logout:', error.message);
     }
-  }, [name]);
-  if (name) {
-    console.log(name)
-  }
+  };
 
+  // // setUserName(name)
+  useEffect(() => {
+    setUserName(names || 'user');
+    alert(names)
+  }, []);
 
-    const handleLogout = async () => {
-      try {
-        await onLogout(); // Call the provided logout function
-        // Optionally, you can navigate to another page or perform other actions after logout
-      } catch (error:any) {
-        console.error('Error during logout:', error.message);
-      }
-    };
-  
-
-
-  
 
   return (
     <div className="header flex justify-between items-center px-6 py-4">
@@ -52,7 +50,7 @@ const Header : React.FC<HeaderProps> =({onLogout})=>{
         <a href="#products">Products</a>
         <a href="#contact">Contact Us</a>
         <div className="flex items-center gap-4">
-          {userName && <p>{userName}</p>}
+          <p>{userName}</p>
           <div className="rounded-full bg-red-100 p-2">
             <Router>
               <Link to={'/Login'}>

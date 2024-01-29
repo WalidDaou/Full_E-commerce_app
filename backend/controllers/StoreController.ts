@@ -8,20 +8,20 @@ import { superAdmins } from "../shared/constants"
 const StoreController = express.Router()
 
 
-// StoreController.get('/:_id', async (req, res) => {
-//     try {
-//         if (!req.params._id) {
-//             return
-//         }
-//         const store = await Store.findOne({
-//             _id: req.params._id
-//         })
-//         res.json(store)
-//     } catch (error) {
-//         console.log(error)
-//         res.status(400).json({ error: "Failed to get store!" })
-//     }
-// })
+StoreController.get('/:_id', async (req, res) => {
+    try {
+        if (!req.params._id) {
+            return
+        }
+        const store = await Store.findOne({
+            _id: req.params._id
+        })
+        res.json(store)
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({ error: "Failed to get store!" })
+    }
+})
 
 StoreController.get('/list', async (req, res) => {
     try {
