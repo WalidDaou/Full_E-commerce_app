@@ -44,7 +44,6 @@ function ProductList() {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    // Add your authorization header if needed
                     'Authorization': `Bearer ${token}`,
                 },
             });

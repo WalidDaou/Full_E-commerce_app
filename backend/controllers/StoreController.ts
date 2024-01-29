@@ -8,7 +8,7 @@ import { superAdmins } from "../shared/constants"
 const StoreController = express.Router()
 
 
-StoreController.get('/:_id', async (req, res) => {
+StoreController.get('/find/:_id', async (req, res) => {
     try {
         if (!req.params._id) {
             return

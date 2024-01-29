@@ -11,6 +11,7 @@ import ProductList from "./components/ProductList";
 import Header from "./components/Header";
 import FiltersBar from "./components/Filters/FiltersBar";
 import { homeURL, superAdmins } from './shared/constants';
+//@ts-ignore
 import AdminApprove from './components/Forms/AdminApprove';
 import StoresList from './components/StoresList';
 
@@ -52,7 +53,7 @@ const App: React.FC = () => {
       render={(props) =>
         token && superAdmins.includes(decodedToken?.user.email) ? (
           <AdminApprove {...props} />
-          
+
         ) : (
           <Redirect to="/login" />
         )
@@ -74,15 +75,15 @@ const App: React.FC = () => {
 
   const checkForChanges = () => {
     // Your logic to check for changes or perform some action
-    console.log('Checking for changes...');
+    // console.log('Checking for changes...');
     // For example, if myValue changes, do something
     if (token) {
       console.log(names);
-      setAdmin(decodedToken?.user.email);
       // alert(decodedToken?.user.email)
+      setAdmin(decodedToken?.user.email);
     }
 
-    setTimeout(checkForChanges, 10000); // Set the timeout duration in milliseconds (e.g., 1000 ms = 1 second)
+    // setTimeout(checkForChanges, 10000); // Set the timeout duration in milliseconds (e.g., 1000 ms = 1 second)
   };
 
   useEffect(() => {
@@ -110,11 +111,11 @@ const App: React.FC = () => {
           )} */}
 
 
-{token ?<PrivateRoute path="/dashboard" component={AdminApprove}/>:null}
+          {token ? <PrivateRoute path="/dashboard" component={AdminApprove} /> : null}
           <Route path='/Login' exact component={Login} />
           <Route path='/Register' exact component={Register} />
           <Route path='/products' exact component={ProductList} />
-          <Route path='/store' exact component={StoresList} />
+          <Route path='/stores' exact component={StoresList} />
           <Route path='/store' exact component={CreateStore} />
           <Route path='/MyProduct' exact component={AddProduct} />
         </Switch>

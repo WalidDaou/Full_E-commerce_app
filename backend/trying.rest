@@ -47,7 +47,7 @@ Content-Type: application/json
 //"_id": "65b4f86895ab6ffeb70a5941", id for product 1
 ###
 PUT http://localhost:5000/api/v1/store/approve/65b56993545ec86a9b93ff2a
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1YjU2NmVkNTQ1ZWM4NmE5YjkzZmYxNiIsIm5hbWUiOiJ3YWxpZCIsImVtYWlsIjoid2FsaWQuZGFvdUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiIsInVwZGF0ZWRBdCI6IjIwMjQtMDEtMjdUMjA6MjY6MjEuNDA2WiIsImNyZWF0ZWRBdCI6IjIwMjQtMDEtMjdUMjA6MjY6MjEuNDA3WiIsIl9fdiI6MH0sImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE3MDYzODgwMzh9.JF5D_KnNyD1JrlyilN8JdkpkI2dLCMznIUj2QAKhBF0
+Authorization: Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1YjdiNDIyYjUxMjIxM2RmZTExNTBkMyIsIm5hbWUiOiJiYWJ5IiwiZW1haWwiOiJiYWJ5QGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiIiwidXBkYXRlZEF0IjoiMjAyNC0wMS0yOVQxNDoyMDoxOC40NzdaIiwiY3JlYXRlZEF0IjoiMjAyNC0wMS0yOVQxNDoyMDoxOC40NzdaIiwiX192IjowfSwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTcwNjUzODA0Mn0
 Content-Type: application/json
 
 {
@@ -63,10 +63,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6I
 Content-Type: application/json
 
 ###
-GET http://localhost:5000/api/v1/store/list
+GET http://localhost:5000/api/v1/store/find/65af9b3be2633b8e9cbc13a9
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjY1YjUzNjFhMTI3MjU1YzY5NTFkOGU5YyIsIm5hbWUiOiJ3ZWxsbyIsImVtYWlsIjoid2VsbG9AdGVzdC4xMjIzIiwicGFzc3dvcmQiOiIiLCJ1cGRhdGVkQXQiOiIyMDI0LTAxLTI3VDE2OjU4OjAyLjY5MVoiLCJjcmVhdGVkQXQiOiIyMDI0LTAxLTI3VDE2OjU4OjAyLjY5MVoiLCJfX3YiOjB9LCJpYXQiOjE3MDYzNzg3MzN9.YaopKXsKcGfT-cLmFHFr3J_fWO5LRv4papHD9v7vv0U
 Content-Type: application/json
 
 
 ###
-GET http://localhost:5000/api/v1/user/decoded-token
+GET http://localhost:5000/api/v1/store/list
+Content-Type: application/json
 

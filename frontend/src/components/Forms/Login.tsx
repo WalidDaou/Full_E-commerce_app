@@ -39,7 +39,7 @@ function Login() {
         setToken(response.data.token);
         // setNames(response.data.user.name);
 
-        history.push('/',)
+        history.push('/products',)
 
       })
       .catch(function (error) {
